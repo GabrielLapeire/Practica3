@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue</title>
+</head>
+<body>
+    <main id="app">
+        <form>
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre">
+            <label for="apellidos">Apellidos</label>
+            <input type="text" id="apellidos">
+            <label for="direccion">Dirección de envío</label>
+            <select id="direccion" v-model="direccion">
+                <option value="misma">Misma dirección que facturación</option>
+                <option value="nueva">Introducir nueva dirección</option>
+            </select>
+            <div v-if="direccion === 'nueva'">
+                <label for="nuevaDireccion">Nueva dirección</label>
+                <textarea id="nuevaDireccion"></textarea>
+            </div>
+            <div>
+                <input v-model="check" type="checkbox"><span>He leído y acepto la política de privacidad</span>
+            </div>
+            <input v-if="check === true" type="submit" value="Enviar"><!-- usar v-if para cosas importantes y v-show para las demas -->
+            <p v-else>Debes aceptar la plítica de privacidad para poder enviar el formulario</p>
+        </form>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js">
+        Vue.config.devtools = true; //necesario para que funcione Vue Devtools
+    </script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                direccion: "misma",
+                check: false,
+            }
+        });
+    </script>
+</body>
+</html>
