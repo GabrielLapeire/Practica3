@@ -1,13 +1,16 @@
 <template>
   <NavigationComp />
+  <BaseForm/>
   <router-view />
 </template>
 
 <script>
   import NavigationComp from '@/components/NavigationComp'
+  import BaseForm from '@/components/BaseForm'
   export default {
     components: {
-      NavigationComp
+      NavigationComp,
+      BaseForm
     }
   }
 </script>
@@ -17,7 +20,7 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
+  text-align: center;
   color: #2c3e50;
 }
 

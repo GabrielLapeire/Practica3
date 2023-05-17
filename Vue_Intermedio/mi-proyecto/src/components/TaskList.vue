@@ -5,11 +5,11 @@
     <input type="button" value="Agregar tarea" @click="addTask()"><br>
     <input type="search" placeholder="Filtrar por titulo de tareas" v-model="taskFilter">
     <TaskElement
-      v-for="(task, $index) in taskList"
+      v-for="(task, $index) in filteredTasks"
       :key="task.id"
       :title="task.title"
       @eliminateTask="eliminateTask($index)">
-    </TaskElement><!-- duda por minuto 20:10 -->
+    </TaskElement>
   </div>
 </template>
 
@@ -42,8 +42,8 @@
     },
     computed: {
       filteredTasks() {
-        return this.tareas.filter(tarea => {
-          return tarea.title.includes(this.taskFilter)
+        return this.taskList.filter(taskElement => {
+          return taskElement.title.includes(this.taskFilter)
         })
       }
     },

@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <BaseForm/>
     <TaskList/>
   </div>
 </template>

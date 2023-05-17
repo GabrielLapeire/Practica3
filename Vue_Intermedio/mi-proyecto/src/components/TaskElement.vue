@@ -13,3 +13,13 @@
     props: ['title']
   }
 </script>
+
+<style lang="scss" scoped>
+  h3 {
+    color: $corporative;
+  }
+
+  button {
+    background-color: $alternative;
+  }
+</style>
