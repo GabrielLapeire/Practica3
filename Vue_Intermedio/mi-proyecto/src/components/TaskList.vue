@@ -14,15 +14,19 @@
 </template>
 
 <script>
-  import TaskElement from '@/components/TaskElement'
+  import toDoService from '../services/ToDoService.js';
+  import TaskElement from '@/components/TaskElement';
 
   export default {
     name: 'TaskList',
     created() {
-      fetch('https://jsonplaceholder.typicode.com/todos')
-        .then(respuesta => respuesta.json())
-          .then(datos => this.taskList = datos)
-        .catch(error => console.error(error))
+      // fetch('https://jsonplaceholder.typicode.com/todos')
+      //   .then(respuesta => respuesta.json())
+      //     .then(datos => this.taskList = datos)
+      //   .catch(error => console.error(error))
+
+      toDoService.get()
+      .then(taskList => this.taskList = taskList.data);
     },
     data() {
         return {

@@ -1,16 +1,16 @@
 <template>
   <NavigationComp />
-  <BaseForm/>
+  <!-- <BaseForm/> -->
   <router-view />
 </template>
 
 <script>
   import NavigationComp from '@/components/NavigationComp'
-  import BaseForm from '@/components/BaseForm'
+  // import BaseForm from '@/components/BaseForm'
   export default {
     components: {
       NavigationComp,
-      BaseForm
+      // BaseForm
     }
   }
 </script>
