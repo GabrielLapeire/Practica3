@@ -1,14 +1,14 @@
 <template>
   <div>
     <h1>Tareas</h1>
-    <input type="text" placeholder="Añadir tarea" v-model="newTask">
-    <input type="button" value="Agregar tarea" @click="addTask()"><br>
-    <input type="search" placeholder="Filtrar por titulo de tareas" v-model="taskFilter">
+    <input type="text" placeholder="Añadir item" v-model="newItem">
+    <input type="button" value="Agregar item" @click="addItem()"><br>
+    <input type="search" placeholder="Filtrar por titulo de items" v-model="itemFilter">
     <TaskElement
-      v-for="(task, $index) in filteredTasks"
-      :key="task.id"
-      :title="task.title"
-      @eliminateTask="eliminateTask($index)">
+      v-for="(item, $index) in filteredItems"
+      :key="item.id"
+      :title="item.title"
+      @eliminateItem="eliminateItem($index)">
     </TaskElement>
   </div>
 </template>
@@ -16,9 +16,11 @@
 <script>
   import toDoService from '../services/ToDoService.js';
   import TaskElement from '@/components/TaskElement';
+  import {crudItemsMixin} from '../mixins/crudItems';
 
   export default {
     name: 'TaskList',
+    mixins: [crudItemsMixin],
     created() {
       // fetch('https://jsonplaceholder.typicode.com/todos')
       //   .then(respuesta => respuesta.json())
@@ -26,30 +28,7 @@
       //   .catch(error => console.error(error))
 
       toDoService.get()
-      .then(taskList => this.taskList = taskList.data);
-    },
-    data() {
-        return {
-            taskList: [],
-            newTask: '',
-            taskFilter: '',
-        }
-    },
-    methods: {
-      addTask() {
-        this.taskList.unshift({title: this.newTask});
-        this.newTask= '';
-      },
-      eliminateTask(indice) {
-        this.taskList.splice(indice, 1);
-      }
-    },
-    computed: {
-      filteredTasks() {
-        return this.taskList.filter(taskElement => {
-          return taskElement.title.includes(this.taskFilter)
-        })
-      }
+      .then(items => this.items = items.data);
     },
     components: {
       TaskElement
